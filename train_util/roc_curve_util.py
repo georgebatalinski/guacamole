@@ -21,6 +21,7 @@ import warnings
 
 import matplotlib.pyplot as plt
 import numpy as np
+from numpy import trapz
 
 PLOT_LINES = ["-+", "--D", "-.s", ":*", "-^", "--|", "-._", ":"]
 
@@ -34,6 +35,11 @@ def get_correct_predicted(datapoints, as_string=False):
         datapoints = np.asarray(datapoints)
         correct = datapoints[:, 0].astype('float')
         predicted = datapoints[:, 1].astype('float')
+
+        y = np.array(predicted)
+        area = trapz(y) //Feed the predictions of Y - to calculate area
+        print("area =", area) 
+        
     except IndexError:
         # deal with the case where the last row has the wrong number
         # of columns -- eg, if you are looking at a csv file as it's

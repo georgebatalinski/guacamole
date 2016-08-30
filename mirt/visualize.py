@@ -2,11 +2,18 @@
 training
 """
 from collections import defaultdict
+import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 
 import mirt_util
 from train_util import roc_curve_util
+from datetime import date
+
+
+def today_date():   
+    return str(date.today())
 
 
 def show_roc(predictions):
@@ -15,11 +22,12 @@ def show_roc(predictions):
     Predictions is a dictionary with keys consisting of model names,
     and values consisting of predictions made by those models.
     """
-    plt.figure(1)
+    fig = plt.figure(1)
     for model, classifications in predictions.iteritems():
         roc_curve_util.draw_roc_curve(model, classifications)
     roc_curve_util.add_roc_labels()
-    plt.show()
+    fig.savefig('roc' + today_date() + '.png')
+    #plt.show()
 
 
 def show_exercises(parameter_file):
