@@ -37,7 +37,8 @@ def get_correct_predicted(datapoints, as_string=False):
         predicted = datapoints[:, 1].astype('float')
 
         y = np.array(predicted)
-        area = trapz(y)
+        x = np.array(correct)
+        area = trapz(y, x)
         print("area =", area) 
 
     except IndexError:
