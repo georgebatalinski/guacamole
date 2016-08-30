@@ -37,9 +37,9 @@ def get_correct_predicted(datapoints, as_string=False):
         predicted = datapoints[:, 1].astype('float')
 
         y = np.array(predicted)
-        area = trapz(y) //Feed the predictions of Y - to calculate area
+        area = trapz(y)
         print("area =", area) 
-        
+
     except IndexError:
         # deal with the case where the last row has the wrong number
         # of columns -- eg, if you are looking at a csv file as it's
